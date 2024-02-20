@@ -1,5 +1,9 @@
 # Rover
 
+# OVERVIEW
+Create a Rover game where the user clicks a button to generate moves for the rover and the rover moves on the grid.
+Use the SVG code from the Vitali project to create the component.
+
 # TODO List for Rover Game
 
 ## Backend
