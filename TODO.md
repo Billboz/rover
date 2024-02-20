@@ -10,6 +10,12 @@ Use the SVG code from the Vitali project to create the component.
 - [x] Create the Rover phoenix app
 - [x] Run `mix deps.get`
 - [x] Create `rover.ex` and place it in the `/lib/rover/` folder
+- [ ] 
+- [ ] 
+- [ ] 
+- [ ] 
+- [ ] 
+- [ ] 
 - [ ] Implement the business logic for the Rover
 - [ ] Create a module for the Grid
 - [ ] Implement the business logic for the Grid

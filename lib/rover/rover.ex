@@ -51,9 +51,16 @@ defmodule Rover do
   end
 
   # LAST - SDefine a function to move the rover based on a list of commands.
-  def move_all(rover, moves) do
-    moves
+  def move_all(rover) do
+    moves = ~w(F L R)
+
+    1..10
+    |> Enum.map(fn _ -> Enum.random(moves) end)
+    |> Enum.join()
     |> String.graphemes()
     |> Enum.reduce(rover, fn move, acc -> move(acc, move) end)
   end
+
+  # Now can be run in the terminal with "Rover.new |> Rover.move_all"
+  # Could make a call from 'move_all' to include the 'Rover.new'??? So only 'Rover.move_all' is needed.
 end
