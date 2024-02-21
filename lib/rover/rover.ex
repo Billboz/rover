@@ -61,6 +61,6 @@ defmodule Rover do
     |> Enum.reduce(rover, fn move, acc -> move(acc, move) end)
   end
 
-  # Now can be run in the terminal with "Rover.new |> Rover.move_all"
+  # Now can be run in the terminal with "Rover.new |> Rover.move_all" or "rover = Rover.new" then "Rover.move_all(rover)"
   # Could make a call from 'move_all' to include the 'Rover.new'??? So only 'Rover.move_all' is needed.
 end
