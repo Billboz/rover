@@ -23,7 +23,7 @@ defmodule Rover do
   # 3rd - Define a function to turn the rover left.
   def left(rover) do
     case rover.direction do
-      :north -> %{rover | direction: :west}
+      :north -> %{rover | direction: :westy}
       :east -> %{rover | direction: :north}
       :south -> %{rover | direction: :east}
       :west -> %{rover | direction: :south}
