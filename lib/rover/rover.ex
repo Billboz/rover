@@ -8,7 +8,7 @@ defmodule Rover do
 
   # 1st - Define the structure of the rover with its initial direction and location.
   defstruct direction: :north, location: {0, 0}
-
+  alias Rover.Grid
   # 5th - Define the function to move the rover based on the given command.
   # Pattern matching is used to determine which function to call.
   def move(rover, "L"), do: left(rover)
@@ -51,14 +51,20 @@ defmodule Rover do
   end
 
   # LAST - SDefine a function to move the rover based on a list of commands.
-  def move_all(rover) do
+  def move_all(rover, grid) do
     moves = ~w(F L R)
 
     1..10
     |> Enum.map(fn _ -> Enum.random(moves) end)
     |> Enum.join()
     |> String.graphemes()
-    |> Enum.reduce(rover, fn move, acc -> move(acc, move) end)
+    |> Enum.reduce({rover, grid}, fn move, {acc_rover, acc_grid} ->
+      :timer.sleep(500)
+      updated_rover = move(acc_rover, move)
+      updated_grid = Grid.update_with_rover(acc_grid, updated_rover)
+      IO.inspect(updated_rover, label: "after move #{move}")
+      {updated_rover, updated_grid}
+    end)
   end
 
   # Now can be run in the terminal with "Rover.new |> Rover.move_all" or "rover = Rover.new" then "Rover.move_all(rover)"
