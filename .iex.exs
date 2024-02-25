@@ -1,1 +1,1 @@
-alias Rover.Rover.{Rover, Grid}
+alias Rover.{Grid, Rover}
