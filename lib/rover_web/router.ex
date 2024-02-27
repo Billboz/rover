@@ -2,30 +2,23 @@ defmodule RoverWeb.Router do
   use RoverWeb, :router
 
   pipeline :browser do
-    plug(:accepts, ["html"])
-    plug(:fetch_session)
-    plug(:fetch_live_flash)
-    plug(:put_root_layout, html: {RoverWeb.Layouts, :root})
-    plug(:protect_from_forgery)
-    plug(:put_secure_browser_headers)
+    plug :accepts, ["html"]
+    plug :fetch_session
+    plug :fetch_live_flash
+    plug :put_root_layout, html: {RoverWeb.Layouts, :root}
+    plug :protect_from_forgery
+    plug :put_secure_browser_headers
   end
 
   pipeline :api do
-    plug(:accepts, ["json"])
+    plug :accepts, ["json"]
   end
 
   scope "/", RoverWeb do
-    pipe_through(:browser)
+    pipe_through :browser
 
-    get("/", PageController, :home)
-    get("/game", PageController, :game)
-
-    live("/games", GameLive.Index, :index)
-    live("/games/new", GameLive.Index, :new)
-    live("/games/:id/edit", GameLive.Index, :edit)
-
-    live("/games/:id", GameLive.Show, :show)
-    live("/games/:id/show/edit", GameLive.Show, :edit)
+    get "/", PageController, :home
+    get "/game", PageController, :game
   end
 
   # Other scopes may use custom stacks.
@@ -43,10 +36,10 @@ defmodule RoverWeb.Router do
     import Phoenix.LiveDashboard.Router
 
     scope "/dev" do
-      pipe_through(:browser)
+      pipe_through :browser
 
-      live_dashboard("/dashboard", metrics: RoverWeb.Telemetry)
-      forward("/mailbox", Plug.Swoosh.MailboxPreview)
+      live_dashboard "/dashboard", metrics: RoverWeb.Telemetry
+      forward "/mailbox", Plug.Swoosh.MailboxPreview
     end
   end
 end
