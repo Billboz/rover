@@ -18,4 +18,8 @@ defmodule Rover.Grid do
   def update_with_rover(grid, %Rover{location: {x, y}, direction: direction}) do
     Map.put(grid, {x, y}, %{rover: true, direction: direction})
   end
+
+  # TESTING GIT 
+
+
 end
