@@ -1,6 +1,6 @@
 defmodule Rover.Grid do
   defstruct location: {0, 0}, direction: :north
-  alias Rover.Rover
+  alias Rover.Robot
   @size 3
   def width, do: @size
   def height, do: @size
@@ -15,7 +15,7 @@ defmodule Rover.Grid do
     Map.put(grid, {x, y}, %{rover: true, direction: direction})
   end
 
-  def update_with_rover(grid, %Rover{location: {x, y}, direction: direction}) do
+  def update_with_rover(grid, %Robot{location: {x, y}, direction: direction}) do
     Map.put(grid, {x, y}, %{rover: true, direction: direction})
   end
 end
