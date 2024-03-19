@@ -34,9 +34,18 @@ defmodule RoverWeb.GameLive do
   end
 
   defp update_direction_svg(socket) do
+    # I think a case statement here that checks the direction of the robot and returns the correct image
+    direction_svg_path =
+      case socket.assigns.robot.direction do
+        :north -> "/images/roverNorth.svg"
+        :east -> "/images/roverEast.svg"
+        :south -> "/images/roverSouth.svg"
+        :west -> "/images/roverWest.svg"
+      end
+
     direction_svg =
       Phoenix.HTML.raw(
-        "<img src=\"/images/roverSmall.svg\" alt=\"Rover Image\" width=\"50\" height=\"50\" />"
+        "<img src=\"#{direction_svg_path}\" alt=\"Rover Image\" width=\"50\" height=\"50\" />"
       )
 
     assign(socket, :direction_svg, direction_svg)
