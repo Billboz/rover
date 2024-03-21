@@ -10,8 +10,8 @@ defmodule RoverWeb.RoverComponent do
     """
   end
 
-  defp direction_icon(:north), do: "/images/roverNorth.svg"
-  defp direction_icon(:south), do: "/images/roverSouth.svg"
-  defp direction_icon(:east), do: "/images/roverEast.svg"
-  defp direction_icon(:west), do: "/images/roverWest.svg"
+  def direction_icon(:north), do: "/images/roverNorth.svg"
+  def direction_icon(:south), do: "/images/roverSouth.svg"
+  def direction_icon(:east), do: "/images/roverEast.svg"
+  def direction_icon(:west), do: "/images/roverWest.svg"
 end
