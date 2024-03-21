@@ -1,12 +1,19 @@
 defmodule Rover.Grid do
   defstruct location: {0, 0}, direction: :north
   alias Rover.Robot
-  @size 3
+  @size 9
   def width, do: @size
   def height, do: @size
 
   def new do
-    grid = for x <- -@size..width(), y <- -@size..height(), into: %{}, do: {{x, y}, false}
+    half_size = div(@size, 2)
+
+    grid =
+      for x <- -half_size..half_size,
+          y <- -half_size..half_size,
+          into: %{},
+          do: {{x, y}, false}
+
     rover_start(grid, {0, 0}, :north)
   end
 
