@@ -1,4 +1,5 @@
 defmodule Rover.Robot do
+  require Logger
   # Bruces directions to solve the Rover problem.
   # Start with the right data - location and orientation
   #   defstruct direction: :north, location: {0, 0}
@@ -42,12 +43,16 @@ defmodule Rover.Robot do
 
   # 5th - Define a function to move the rover forward.
   def forward(%__MODULE__{location: {x, y}, direction: direction} = rover) do
-    case direction do
-      :north -> %{rover | location: {x, y + 1}}
-      :east -> %{rover | location: {x + 1, y}}
-      :south -> %{rover | location: {x, y - 1}}
-      :west -> %{rover | location: {x - 1, y}}
-    end
+    new_rover =
+      case direction do
+        :north -> %{rover | location: {x, y + 1}}
+        :east -> %{rover | location: {x + 1, y}}
+        :south -> %{rover | location: {x, y - 1}}
+        :west -> %{rover | location: {x - 1, y}}
+      end
+
+    Logger.info("Rover moved forward to: #{inspect(new_rover.location)}")
+    new_rover
   end
 
   # LAST - SDefine a function to move the rover based on a list of commands.

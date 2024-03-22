@@ -1,7 +1,6 @@
 defmodule RoverWeb.GameLive do
   use Phoenix.LiveView
-  alias Rover.Robot
-  alias RoverWeb.RoverComponent
+  alias Rover.{Robot, Grid}
 
   def mount(_params, _session, socket) do
     grid = Rover.Grid.new()
@@ -14,22 +13,20 @@ defmodule RoverWeb.GameLive do
 
   def handle_event("left", _params, socket) do
     robot = Robot.left(socket.assigns.robot)
-    grid = socket.assigns.grid
+    grid = Grid.update_with_rover(socket.assigns.grid, robot)
     {:noreply, assign(socket, grid: grid, robot: robot)}
   end
 
   def handle_event("forward", _params, socket) do
     robot = Robot.forward(socket.assigns.robot)
-    grid = socket.assigns.grid
+    grid = Grid.update_with_rover(socket.assigns.grid, robot)
     {:noreply, assign(socket, grid: grid, robot: robot)}
   end
 
   def handle_event("right", _params, socket) do
     robot = Robot.right(socket.assigns.robot)
-    grid = socket.assigns.grid
-    # This is experimental code we are working on
-    rover = RoverComponent.direction_icon(socket.assigns.rover.direction)
-    {:noreply, assign(socket, grid: grid, robot: robot, rover: :right)}
+    grid = Grid.update_with_rover(socket.assigns.grid, robot)
+    {:noreply, assign(socket, grid: grid, robot: robot)}
   end
 
   def render(assigns) do
