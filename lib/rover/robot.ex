@@ -1,27 +1,16 @@
 defmodule Rover.Robot do
   require Logger
-  # Bruces directions to solve the Rover problem.
-  # Start with the right data - location and orientation
-  #   defstruct direction: :north, location: {0, 0}
-  # CRC
-  # the Constructor needs to be created with the new/0 function
-  #
-
-  # 1st - Define the structure of the rover with its initial direction and location.
   defstruct location: {0, 0}, direction: :north
   alias Rover.Grid
-  # 5th - Define the function to move the rover based on the given command.
-  # Pattern matching is used to determine which function to call.
+
   def move(rover, "L"), do: left(rover)
   def move(rover, "R"), do: right(rover)
   def move(rover, "F"), do: forward(rover)
 
-  # 2nd - Define a function to create a new rover with the default direction and location.
   def new() do
     %__MODULE__{}
   end
 
-  # 3rd - Define a function to turn the rover left.
   def left(rover) do
     case rover.direction do
       :north -> %{rover | direction: :west}
@@ -31,7 +20,6 @@ defmodule Rover.Robot do
     end
   end
 
-  # 4th - Define a function to turn the rover right.
   def right(rover) do
     case rover.direction do
       :north -> %{rover | direction: :east}
@@ -41,7 +29,6 @@ defmodule Rover.Robot do
     end
   end
 
-  # 5th - Define a function to move the rover forward.
   def forward(%__MODULE__{location: {x, y}, direction: direction} = rover) do
     new_rover =
       case direction do
@@ -55,7 +42,6 @@ defmodule Rover.Robot do
     new_rover
   end
 
-  # LAST - SDefine a function to move the rover based on a list of commands.
   def move_all(rover, grid) do
     moves = ~w(F L R)
 
@@ -71,7 +57,4 @@ defmodule Rover.Robot do
       {updated_rover, updated_grid}
     end)
   end
-
-  # Now can be run in the terminal with "Rover.new |> Rover.move_all" or "rover = Rover.new" then "Rover.move_all(rover)"
-  # Could make a call from 'move_all' to include the 'Rover.new'??? So only 'Rover.move_all' is needed.
 end
