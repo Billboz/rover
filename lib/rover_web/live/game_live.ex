@@ -33,13 +33,22 @@ defmodule RoverWeb.GameLive do
     <div class="flex flex-col items-center">
       <%= live_component(RoverWeb.GridComponent, id: "grid", grid: @grid, size: Rover.Grid.width()) %>
       <div class="mt-4 space-x-4">
-        <button class="bg-blue-500 text-white font-bold py-2 px-4 rounded-lg" phx-click="left">
+        <button
+          class="bg-blue-500 text-white font-bold py-2 px-4 rounded-lg active:scale-95 hover:scale-105 transition-transform"
+          phx-click="left"
+        >
           Left
         </button>
-        <button class="bg-blue-500 text-white font-bold py-2 px-4 rounded-lg" phx-click="forward">
+        <button
+          class="bg-green-500 text-white font-bold py-2 px-4 rounded-lg active:scale-95 hover:scale-105 transition-transform"
+          phx-click="forward"
+        >
           Forward
         </button>
-        <button class="bg-blue-500 text-white font-bold py-2 px-4 rounded-lg" phx-click="right">
+        <button
+          class="bg-blue-500 text-white font-bold py-2 px-4 rounded-lg active:scale-95 hover:scale-105 transition-transform"
+          phx-click="right"
+        >
           Right
         </button>
       </div>
