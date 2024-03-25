@@ -3,7 +3,7 @@ defmodule Rover.Grid do
 
   defstruct location: {0, 0}, direction: :north
   alias Rover.Robot
-  @size 7
+  @size 11
   def width, do: @size
   def height, do: @size
 

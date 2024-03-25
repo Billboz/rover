@@ -24,8 +24,8 @@ defmodule RoverWeb.GridComponent do
                 direction: value.direction
               ) %>
             <% else %>
-              <div class="bg-gray-400 flex justify-center items-center">
-                <span class="text-xs text-white">
+              <div class="bg-white-400 flex justify-center items-center">
+                <span class="text-xs text-black">
                   &lbrace;<%= elem(key, 0) %>, <%= elem(key, 1) %>&rbrace;
                 </span>
               </div>
