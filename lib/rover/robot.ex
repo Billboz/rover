@@ -1,7 +1,6 @@
 defmodule Rover.Robot do
   require Logger
   defstruct location: {0, 0}, direction: :north
-  alias Rover.Grid
 
   def move(rover, "L"), do: left(rover)
   def move(rover, "R"), do: right(rover)
@@ -40,21 +39,5 @@ defmodule Rover.Robot do
 
     Logger.info("Rover moved forward to: #{inspect(new_rover.location)}")
     new_rover
-  end
-
-  def move_all(rover, grid) do
-    moves = ~w(F L R)
-
-    1..10
-    |> Enum.map(fn _ -> Enum.random(moves) end)
-    |> Enum.join()
-    |> String.graphemes()
-    |> Enum.reduce({rover, grid}, fn move, {acc_rover, acc_grid} ->
-      :timer.sleep(500)
-      updated_rover = move(acc_rover, move)
-      updated_grid = Grid.update_with_rover(acc_grid, updated_rover)
-      IO.inspect(updated_rover, label: "after move #{move}")
-      {updated_rover, updated_grid}
-    end)
   end
 end

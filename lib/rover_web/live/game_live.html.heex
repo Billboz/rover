@@ -1,0 +1,23 @@
+<div class="h-full bg-white-800">
+  <%= live_component(RoverWeb.GridComponent, id: "grid", grid: @grid, size: @size) %>
+  <div class="mt-4 flex justify-center space-x-4">
+    <button
+      phx-click="left"
+      class="bg-blue-500 text-white font-bold py-2 px-4 rounded-lg active:scale-95 hover:scale-105 transition-transform"
+    >
+      Left
+    </button>
+    <button
+      phx-click="forward"
+      class="bg-green-500 text-white font-bold py-2 px-4 rounded-lg active:scale-95 hover:scale-105 transition-transform"
+    >
+      Forward
+    </button>
+    <button
+      phx-click="right"
+      class="bg-blue-500 text-white font-bold py-2 px-4 rounded-lg active:scale-95 hover:scale-105 transition-transform"
+    >
+      Right
+    </button>
+  </div>
+</div>
