@@ -4,7 +4,7 @@ defmodule RoverWeb.ArrowComponent do
   def render(assigns) do
     arrow_svg_path = arrow_direction_icon(assigns.direction)
     assigns = assign(assigns, :arrow_svg_path, arrow_svg_path)
-    assigns = assign(assigns, :opacity, assigns.opacity || "1.0")
+    # assigns = assign(assigns, :opacity, assigns.opacity || "1.0")
 
     ~H"""
     <img src={@arrow_svg_path} alt="Arrow" style="opacity: {@opacity}" width="50" height="50" />

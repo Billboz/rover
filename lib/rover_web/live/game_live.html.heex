@@ -1,5 +1,10 @@
 <div class="h-full bg-white-800">
-  <%= live_component(RoverWeb.GridComponent, id: "grid", grid: @grid, size: @size) %>
+  <%= live_component(RoverWeb.GridComponent,
+    id: "grid",
+    grid: @grid,
+    size: @size,
+    path_history: @path_history
+  ) %>
   <div class="mt-4 flex justify-center space-x-4">
     <button
       phx-click="left"

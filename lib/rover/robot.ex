@@ -1,10 +1,17 @@
 defmodule Rover.Robot do
   require Logger
-  defstruct location: {0, 0}, direction: :north
+  defstruct location: {0, 0}, direction: :north, path_history: []
 
-  def move(rover, "L"), do: left(rover)
-  def move(rover, "R"), do: right(rover)
-  def move(rover, "F"), do: forward(rover)
+  def move(rover, direction) do
+    # Pre-update path history for forward movement
+    rover = if direction == "F", do: update_path_history(rover), else: rover
+
+    case direction do
+      "F" -> forward(rover)
+      "L" -> left(rover)
+      "R" -> right(rover)
+    end
+  end
 
   def new() do
     %__MODULE__{}
@@ -41,7 +48,14 @@ defmodule Rover.Robot do
         :west -> %{rover | location: {x - 1, y}}
       end
 
-    Logger.info("Rover moved forward to: #{inspect(new_rover.location)}")
+    Logger.info("Robot.Forward to: #{inspect(new_rover.location)}")
     new_rover
+  end
+
+  def update_path_history(%__MODULE__{location: location, path_history: path_history} = rover) do
+    # This function now correctly updates before moving, so no changes needed here
+    new_path_history = [location | path_history]
+    Logger.info("Robot.Update Path History: #{inspect(new_path_history)}")
+    %{rover | path_history: new_path_history}
   end
 end
