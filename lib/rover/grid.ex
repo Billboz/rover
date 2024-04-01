@@ -14,7 +14,7 @@ defmodule Rover.Grid do
           into: %{},
           do: {{x, y}, false}
 
-    IO.inspect(grid, label: "Initial grid")
+    # IO.inspect(grid, label: "Initial grid")
     # Adjusted to remove specific initial position and direction
     Rover.Robot.rover_start(grid)
   end
