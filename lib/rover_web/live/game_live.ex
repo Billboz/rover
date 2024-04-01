@@ -6,7 +6,8 @@ defmodule RoverWeb.GameLive do
     grid = Rover.Grid.new()
     # Assuming width and height are the same
     size = Rover.Grid.width()
-    {:ok, assign(socket, grid: grid, size: size)}
+    robot = Rover.Robot.new()
+    {:ok, assign(socket, grid: grid, size: size, robot: robot)}
   end
 
   def handle_event("left", _params, socket) do
