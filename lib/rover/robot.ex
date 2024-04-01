@@ -10,6 +10,10 @@ defmodule Rover.Robot do
     %__MODULE__{}
   end
 
+  def rover_start(grid) do
+    Map.put(grid, {0, 0}, %{rover: true, direction: :north})
+  end
+
   def left(rover) do
     case rover.direction do
       :north -> %{rover | direction: :west}

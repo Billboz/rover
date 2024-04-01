@@ -4,10 +4,9 @@ defmodule RoverWeb.GameLive do
 
   def mount(_params, _session, socket) do
     grid = Rover.Grid.new()
+    # Assuming width and height are the same
     size = Rover.Grid.width()
-    robot = Rover.Robot.new()
-    socket = assign(socket, grid: grid, size: size, robot: robot)
-    {:ok, socket}
+    {:ok, assign(socket, grid: grid, size: size)}
   end
 
   def handle_event("left", _params, socket) do

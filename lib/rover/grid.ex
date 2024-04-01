@@ -1,13 +1,11 @@
 defmodule Rover.Grid do
   require Logger
 
-  defstruct location: {0, 0}, direction: :north
-  alias Rover.Robot
   @size 11
-  def width, do: @size
-  def height, do: @size
 
-  def new do
+  def width(), do: @size
+
+  def new() do
     half_size = div(@size, 2)
 
     grid =
@@ -17,14 +15,11 @@ defmodule Rover.Grid do
           do: {{x, y}, false}
 
     IO.inspect(grid, label: "Initial grid")
-    rover_start(grid, {0, 0}, :north)
+    # Adjusted to remove specific initial position and direction
+    Rover.Robot.rover_start(grid)
   end
 
-  def rover_start(grid, {x, y}, direction) when direction in [:north, :south, :east, :west] do
-    Map.put(grid, {x, y}, %{rover: true, direction: direction})
-  end
-
-  def update_with_rover(grid, %Robot{location: {x, y}, direction: direction}) do
+  def update_with_rover(grid, %{location: {x, y}, direction: direction}) do
     updated_grid = Map.put(grid, {x, y}, %{rover: true, direction: direction})
     Logger.info("Updated grid: #{inspect(updated_grid)}")
     updated_grid

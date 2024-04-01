@@ -2,13 +2,18 @@ defmodule RoverWeb.GridComponent do
   use Phoenix.LiveComponent
 
   def render(assigns) do
+    size = assigns.size
+
     sorted_grid =
       assigns.grid
       |> Map.to_list()
       |> Enum.sort_by(fn {{x, y}, _value} -> {-y, x} end)
 
+    # IO.inspect(assigns.size, label: "DEBUGGING ASSIGNS") ASSIGNS = 11 HERE!
+
     assigns =
       assign(assigns, :sorted_grid, sorted_grid)
+      |> assign(:size, size)
 
     ~H"""
     <div class="flex justify-center">
@@ -26,7 +31,7 @@ defmodule RoverWeb.GridComponent do
             <% else %>
               <div class="bg-white-400 flex justify-center items-center">
                 <span class="text-xs text-black">
-                  &lbrace;<%= elem(key, 0) %>, <%= elem(key, 1) %>&rbrace;
+                  {<%= elem(key, 0) %>, <%= elem(key, 1) %>}
                 </span>
               </div>
             <% end %>
